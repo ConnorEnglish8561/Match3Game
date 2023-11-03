@@ -42,6 +42,8 @@ public class BoardManager : MonoBehaviour
         float startX = transform.position.x;
         float startY = transform.position.y;
 
+        Sprite[] previousLeft = new Sprite[ySize];
+        Sprite previousBelow = null;
 
         // creates the tiles based on the size of the board
         for (int x = 0; x < xSize; x++)
@@ -53,8 +55,17 @@ public class BoardManager : MonoBehaviour
 
                 // randomizes the tile from a sprite in the <characters> List;
                 newTile.transform.parent = transform;
-                Sprite newSprite = characters[Random.Range(0, characters.Count)];
+
+                List<Sprite> possibleCharacters = new List<Sprite>(); // 1
+                possibleCharacters.AddRange(characters); // 2
+
+                possibleCharacters.Remove(previousLeft[y]); // 3
+                possibleCharacters.Remove(previousBelow);
+
+                Sprite newSprite = possibleCharacters[Random.Range(0, possibleCharacters.Count)];
                 newTile.GetComponent<SpriteRenderer>().sprite = newSprite;
+                previousLeft[y] = newSprite;
+                previousBelow = newSprite;
             }
         }
 
