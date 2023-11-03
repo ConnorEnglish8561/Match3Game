@@ -10,7 +10,8 @@ public class BoardManager : MonoBehaviour
     public int xSize, ySize;
 
     private Vector2 offset;
-    private GameObject[,] tiles;    
+    private GameObject[,] tiles;
+    private GameObject[] totalTiles;
 
     public bool IsShifting { get; set; } 
 
@@ -25,7 +26,11 @@ public class BoardManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown("r"))
-        {
+        { 
+            foreach (GameObject tile in totalTiles)
+            {
+                Destroy(tile);
+            }
             CreateBoard(offset.x, offset.y);
         }
     }
@@ -52,5 +57,7 @@ public class BoardManager : MonoBehaviour
                 newTile.GetComponent<SpriteRenderer>().sprite = newSprite;
             }
         }
+
+        totalTiles = GameObject.FindGameObjectsWithTag("Tile");
     }
 }
