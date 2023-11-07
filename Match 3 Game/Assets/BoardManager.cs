@@ -26,13 +26,19 @@ public class BoardManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown("r"))
-        { 
-            foreach (GameObject tile in totalTiles)
-            {
-                Destroy(tile);
-            }
-            CreateBoard(offset.x, offset.y);
+        {
+            NewBoard();
         }
+    }
+
+    public void NewBoard()
+    {
+        Stats.instance.Reset();
+        foreach (GameObject tile in totalTiles)
+        {
+            Destroy(tile);
+        }
+        CreateBoard(offset.x, offset.y);
     }
 
     private void CreateBoard(float xOffset, float yOffset)
