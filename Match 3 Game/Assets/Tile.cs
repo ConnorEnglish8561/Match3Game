@@ -55,7 +55,7 @@ public class Tile : MonoBehaviour
             }
             else
             {
-                if (Vector2.Distance(this.transform.position, previousSelected.gameObject.transform.position) < 4)
+                if (GetAllAdjacentTiles().Contains(previousSelected.gameObject))
                 {
                     SwapSprite(previousSelected.render);
                     previousSelected.ClearAllMatches();
