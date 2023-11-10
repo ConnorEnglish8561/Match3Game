@@ -128,6 +128,7 @@ public class Tile : MonoBehaviour
             for (int i = 0; i < matchingTiles.Count;i++)
             {
                 matchingTiles[i].GetComponent<SpriteRenderer>().sprite = null;
+                Stats.instance.score++;
             }
             matchFound = true; 
         }
@@ -147,6 +148,7 @@ public class Tile : MonoBehaviour
             StopCoroutine(BoardManager.instance.FindNullTiles());
             StartCoroutine(BoardManager.instance.FindNullTiles());
             // SFXManager.instance.PlaySFX(Clip.Clear); 
+            Stats.instance.matches++;
         }
     }
 }
