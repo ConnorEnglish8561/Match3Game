@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
-    public static BoardManager instance;    
+ public static BoardManager instance;    
     public List<Sprite> characters = new List<Sprite>();    
     public GameObject tile;      
     public int xSize, ySize;
