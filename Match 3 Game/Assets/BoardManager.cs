@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BoardManager : MonoBehaviour
@@ -106,6 +107,13 @@ public class BoardManager : MonoBehaviour
         IsShifting = true;
         List<SpriteRenderer> renders = new List<SpriteRenderer>();
         int nullCount = 0;
+        
+        // Added this if for when a match is made on the top row
+        if(yStart == 9)
+        {
+            SpriteRenderer render = tiles[x, yStart].GetComponent<SpriteRenderer>();
+            renders.Add(render);
+        }
 
         for (int y = yStart; y < ySize; y++)
         {
