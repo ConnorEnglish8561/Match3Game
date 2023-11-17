@@ -182,7 +182,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -546,12 +546,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characters:
-  - {fileID: 1212555995, guid: 9b350c8ab2c550948a4d401f1336fb84, type: 3}
-  - {fileID: 1369898465, guid: 9b350c8ab2c550948a4d401f1336fb84, type: 3}
-  - {fileID: -225620265, guid: 9b350c8ab2c550948a4d401f1336fb84, type: 3}
-  - {fileID: -1817287510, guid: 9b350c8ab2c550948a4d401f1336fb84, type: 3}
-  - {fileID: -1807009981, guid: 9b350c8ab2c550948a4d401f1336fb84, type: 3}
-  - {fileID: -948771696, guid: 9b350c8ab2c550948a4d401f1336fb84, type: 3}
+  - {fileID: -923194738, guid: e4a95ee2cb983ed41ae284d87b801430, type: 3}
+  - {fileID: -1643467000, guid: e4a95ee2cb983ed41ae284d87b801430, type: 3}
+  - {fileID: 414101943, guid: e4a95ee2cb983ed41ae284d87b801430, type: 3}
+  - {fileID: -1963814680, guid: e4a95ee2cb983ed41ae284d87b801430, type: 3}
+  - {fileID: 1627877937, guid: e4a95ee2cb983ed41ae284d87b801430, type: 3}
+  - {fileID: 772999385, guid: e4a95ee2cb983ed41ae284d87b801430, type: 3}
   tile: {fileID: 2923212207768079784, guid: 225f1e282cbd60e4d9fcdd0b7f8adae5, type: 3}
   xSize: 10
   ySize: 10
@@ -564,7 +564,7 @@ Transform:
   m_GameObject: {fileID: 201101814}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: -2.5, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -734,7 +734,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -813,7 +813,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -1416,7 +1416,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 17
+  orthographic size: 20
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1523,7 +1523,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
