@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Stats : MonoBehaviour
 {
     public static Stats instance;
 
-    public int score, matches;
+    public int score, matches, highScore;
     public float remainingTime = 120f;
-    public Text scoreText, matchesText, timeText;
+    public Text scoreText, matchesText, timeText, highScoreText;
     public Canvas gameOver;
     public Canvas insructions;
 
@@ -20,17 +21,23 @@ public class Stats : MonoBehaviour
 
     void Update()
     {
-        if(remainingTime > 0 && score > 0)
+        if (remainingTime > 0 && score > 0)
+        {
             remainingTime -= Time.deltaTime;
-
+        }
         scoreText.text = "Score: " + score.ToString();
         matchesText.text = "Matches: " + matches.ToString();
         timeText.text = "Time: " + remainingTime.ToString("0");
 
         if (remainingTime <= 0f)
         {
+            if (score > highScore)
+            {
+                highScore = score;
+            }
             gameOver.enabled = true;
-            //BoardManager.instance.NewBoard();
+            highScoreText.text = "High Score: " + highScore;
+
         }
 
         if (score == 0)

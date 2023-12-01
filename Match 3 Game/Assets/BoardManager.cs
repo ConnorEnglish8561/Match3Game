@@ -102,7 +102,7 @@ public class BoardManager : MonoBehaviour
 
     }
 
-    private IEnumerator ShiftTilesDown(int x, int yStart, float shiftDelay = .03f)
+    private IEnumerator ShiftTilesDown(int x, int yStart, float shiftDelay = 0.075f)
     {
         IsShifting = true;
         List<SpriteRenderer> renders = new List<SpriteRenderer>();
