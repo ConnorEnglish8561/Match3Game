@@ -125,10 +125,14 @@ public class Tile : MonoBehaviour
         }
         if(matchingTiles.Count >= 2)
         {
+            Stats.instance.score += (matchingTiles.Count + 1) * Stats.instance.multiplier;
+            Stats.instance.comboTime += (matchingTiles.Count + 1) / 1.5f;
+            Stats.instance.multiplier += (matchingTiles.Count + 1) * 0.1f;
+
             for (int i = 0; i < matchingTiles.Count;i++)
             {
                 matchingTiles[i].GetComponent<SpriteRenderer>().sprite = null;
-                Stats.instance.score++;
+                
             }
             matchFound = true; 
         }

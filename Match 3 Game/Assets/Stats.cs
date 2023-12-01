@@ -8,9 +8,9 @@ public class Stats : MonoBehaviour
 {
     public static Stats instance;
 
-    public int score, matches, highScore;
+    public float score, matches, highScore, multiplier = 1f, comboTime;
     public float remainingTime = 120f;
-    public Text scoreText, matchesText, timeText, highScoreText;
+    public Text scoreText, matchesText, timeText, highScoreText, multText;
     public Canvas gameOver;
     public Canvas insructions;
 
@@ -25,9 +25,26 @@ public class Stats : MonoBehaviour
         {
             remainingTime -= Time.deltaTime;
         }
-        scoreText.text = "Score: " + score.ToString();
+        scoreText.text = "Score: " + score.ToString("F1");
         matchesText.text = "Matches: " + matches.ToString();
         timeText.text = "Time: " + remainingTime.ToString("0");
+        multText.text = multiplier.ToString("F1") + "x     " + comboTime.ToString("F1");
+
+        if (comboTime > 0f)
+        {
+            comboTime -= Time.deltaTime;
+            multiplier -= Time.deltaTime / 10f;
+            if (comboTime <= 0f)
+            {
+                comboTime = 0f;
+                multiplier = 1f;
+            }
+
+            if (multiplier < 1f)
+            {
+                multiplier = 1f;
+            }
+        }
 
         if (remainingTime <= 0f)
         {
@@ -36,7 +53,7 @@ public class Stats : MonoBehaviour
                 highScore = score;
             }
             gameOver.enabled = true;
-            highScoreText.text = "High Score: " + highScore;
+            highScoreText.text = "High Score: " + highScore.ToString("F1");
 
         }
 
