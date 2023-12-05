@@ -16,6 +16,7 @@ public class Stats : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 1;
         instance = this;
     }
 
@@ -73,5 +74,7 @@ public class Stats : MonoBehaviour
         score = 0;
         remainingTime = 120f;
         matches = 0;
+        multiplier = 1f;
+        comboTime = 0;
     }
 }
