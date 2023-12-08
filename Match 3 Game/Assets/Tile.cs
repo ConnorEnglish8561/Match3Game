@@ -16,11 +16,14 @@ public class Tile : MonoBehaviour
 
     private bool matchFound = false;
 
+    private AudioSource audioSource;
+
     void Awake()
     {
         render = GetComponent<SpriteRenderer>();
-    }
 
+    }
+    
     private void Select()
     {
         isSelected = true;
@@ -48,7 +51,7 @@ public class Tile : MonoBehaviour
             Deselect();
         }
         else
-        {
+        {   
             if (previousSelected == null)
             { // Is it the first tile selected?
                 Select();
@@ -106,24 +109,30 @@ public class Tile : MonoBehaviour
 
     private List<GameObject> FindMatch(Vector2 castDir)
     {
+        
         List<GameObject> matchingTiles = new List<GameObject>();
         RaycastHit2D hit = Physics2D.Raycast(transform.position, castDir);
         while (hit.collider != null && hit.collider.GetComponent<SpriteRenderer>().sprite == render.sprite)
         {
             matchingTiles.Add(hit.collider.gameObject);
             hit = Physics2D.Raycast(hit.collider.transform.position, castDir);
+            
         }
+        
         return matchingTiles;
     }
 
     private void ClearMatch(Vector2[] paths)
     {
+        
         List<GameObject> matchingTiles = new List<GameObject>();
         for (int i = 0; i < paths.Length;i++)
         {
             matchingTiles.AddRange(FindMatch(paths[i]));
+            
+
         }
-        if(matchingTiles.Count >= 2)
+        if (matchingTiles.Count >= 2)
         {
             Stats.instance.score += (matchingTiles.Count + 1) * Stats.instance.multiplier;
             Stats.instance.comboTime += (matchingTiles.Count + 1) / 1.5f;
@@ -132,10 +141,13 @@ public class Tile : MonoBehaviour
             for (int i = 0; i < matchingTiles.Count;i++)
             {
                 matchingTiles[i].GetComponent<SpriteRenderer>().sprite = null;
-                
             }
+            audioSource = GetComponent<AudioSource>();
+            audioSource.Play();
             matchFound = true; 
+
         }
+        
     }
 
     public void ClearAllMatches()
@@ -151,7 +163,6 @@ public class Tile : MonoBehaviour
             matchFound = false;
             StopCoroutine(BoardManager.instance.FindNullTiles());
             StartCoroutine(BoardManager.instance.FindNullTiles());
-            // SFXManager.instance.PlaySFX(Clip.Clear); 
             Stats.instance.matches++;
         }
     }
