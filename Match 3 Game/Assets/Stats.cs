@@ -18,6 +18,7 @@ public class Stats : MonoBehaviour
     {
         Time.timeScale = 1;
         instance = this;
+        gameObject.SetActive(true);
     }
 
     void Update()
@@ -29,7 +30,7 @@ public class Stats : MonoBehaviour
         scoreText.text = "Score: " + score.ToString("F1");
         matchesText.text = "Matches: " + matches.ToString();
         timeText.text = "Time: " + remainingTime.ToString("0");
-        multText.text = multiplier.ToString("F1") + "x     " + comboTime.ToString("F1");
+        multText.text = multiplier.ToString("F1") + "x   " + comboTime.ToString("F1");
 
         if (comboTime > 0f)
         {
@@ -52,6 +53,10 @@ public class Stats : MonoBehaviour
             if (score > highScore)
             {
                 highScore = score;
+            }
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
             }
             gameOver.enabled = true;
             highScoreText.text = "High Score: " + highScore.ToString("F1");

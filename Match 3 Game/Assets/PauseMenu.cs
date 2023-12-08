@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     bool paused = false;
 
     public Canvas canvas;
+    public GameObject board;
 
     void Update()
     {
@@ -26,11 +27,13 @@ public class PauseMenu : MonoBehaviour
         {
             Time.timeScale = 0;
             canvas.gameObject.SetActive(true);
+            board.gameObject.SetActive(false);
         }
         else
         {
             Time.timeScale = 1;
             canvas.gameObject.SetActive(false);
+            board.gameObject.SetActive(true);
         }
     }
 
