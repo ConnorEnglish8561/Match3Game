@@ -146,7 +146,7 @@ public class Tile : MonoBehaviour
             }
             updatedScoreParticle = Instantiate(scoreParticle, new Vector3(50f, 18f, -2.6f), new Quaternion(-90f, 0, 0, 100));
             updatedScoreParticle.GetComponent<updateParticleScore>().updateText("+" + ((matchingTiles.Count + 1) * Stats.instance.multiplier).ToString("F1"));
-            Stats.instance.comboTime += (matchingTiles.Count + 1) / 1.5f;
+            Stats.instance.comboTime += (matchingTiles.Count + 1) / 0.5f;
             Stats.instance.multiplier += (matchingTiles.Count + 1) * 0.1f;
 
             for (int i = 0; i < matchingTiles.Count; i++)

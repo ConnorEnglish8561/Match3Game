@@ -32,9 +32,9 @@ public class Stats : MonoBehaviour
         timeText.text = "Time: " + remainingTime.ToString("0");
         multText.text = multiplier.ToString("F1") + "x   " + comboTime.ToString("F1");
 
-        if (comboTime > 0f)
+        if (comboTime > 0f && remainingTime > 0f)
         {
-            comboTime -= Time.deltaTime;
+            comboTime -= Time.deltaTime * multiplier * 1.5f;
             multiplier -= Time.deltaTime / 10f;
             if (comboTime <= 0f)
             {
