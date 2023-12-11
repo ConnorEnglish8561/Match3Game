@@ -14,6 +14,7 @@ public class BoardManager : MonoBehaviour
     private GameObject[,] tiles;
     private GameObject[] totalTiles;
 
+    public Canvas pauseMenu;
     public bool IsShifting { get; set; } 
 
     void Awake()
@@ -26,10 +27,11 @@ public class BoardManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("r"))
+        if (Input.GetKeyDown("r") && !pauseMenu.isActiveAndEnabled)
         {
             NewBoard();
         }
+
     }
 
     public void NewBoard()

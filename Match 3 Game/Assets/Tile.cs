@@ -18,12 +18,15 @@ public class Tile : MonoBehaviour
 
     private AudioSource audioSource;
 
+    public ParticleSystem scoreParticle;
+    private ParticleSystem updatedScoreParticle;
+
     void Awake()
     {
         render = GetComponent<SpriteRenderer>();
 
     }
-    
+
     private void Select()
     {
         isSelected = true;
@@ -51,7 +54,7 @@ public class Tile : MonoBehaviour
             Deselect();
         }
         else
-        {   
+        {
             if (previousSelected == null)
             { // Is it the first tile selected?
                 Select();
@@ -109,51 +112,59 @@ public class Tile : MonoBehaviour
 
     private List<GameObject> FindMatch(Vector2 castDir)
     {
-        
+
         List<GameObject> matchingTiles = new List<GameObject>();
         RaycastHit2D hit = Physics2D.Raycast(transform.position, castDir);
         while (hit.collider != null && hit.collider.GetComponent<SpriteRenderer>().sprite == render.sprite)
         {
             matchingTiles.Add(hit.collider.gameObject);
             hit = Physics2D.Raycast(hit.collider.transform.position, castDir);
-            
+
         }
-        
+
         return matchingTiles;
     }
 
     private void ClearMatch(Vector2[] paths)
     {
-        
+
         List<GameObject> matchingTiles = new List<GameObject>();
-        for (int i = 0; i < paths.Length;i++)
+        for (int i = 0; i < paths.Length; i++)
         {
             matchingTiles.AddRange(FindMatch(paths[i]));
-            
+
 
         }
         if (matchingTiles.Count >= 2)
         {
+            float newScore = (matchingTiles.Count + 1) * Stats.instance.multiplier;
             Stats.instance.score += (matchingTiles.Count + 1) * Stats.instance.multiplier;
+            GameObject[] scoreParticleAMT = GameObject.FindGameObjectsWithTag("ScoreParticle");
+            for (int i = 0; i < scoreParticleAMT.Length; i++)
+            {
+                Destroy(scoreParticleAMT[i]);
+            }
+            updatedScoreParticle = Instantiate(scoreParticle, new Vector3(50f, 18f, -2.6f), new Quaternion(-90f, 0, 0, 100));
+            updatedScoreParticle.GetComponent<updateParticleScore>().updateText("+" + ((matchingTiles.Count + 1) * Stats.instance.multiplier).ToString("F1"));
             Stats.instance.comboTime += (matchingTiles.Count + 1) / 1.5f;
             Stats.instance.multiplier += (matchingTiles.Count + 1) * 0.1f;
 
-            for (int i = 0; i < matchingTiles.Count;i++)
+            for (int i = 0; i < matchingTiles.Count; i++)
             {
                 matchingTiles[i].GetComponent<SpriteRenderer>().sprite = null;
             }
             audioSource = GetComponent<AudioSource>();
             audioSource.Play();
-            matchFound = true; 
+            matchFound = true;
 
         }
-        
+
     }
 
     public void ClearAllMatches()
     {
         if (render.sprite == null)
-            return; 
+         return;
 
         ClearMatch(new Vector2[2] { Vector2.left, Vector2.right });
         ClearMatch(new Vector2[2] { Vector2.up, Vector2.down });

@@ -27,13 +27,13 @@ public class PauseMenu : MonoBehaviour
         {
             Time.timeScale = 0;
             canvas.gameObject.SetActive(true);
-            board.gameObject.SetActive(false);
+            board.gameObject.transform.position = new Vector3 (10000, 10000, 10000);
         }
         else
         {
             Time.timeScale = 1;
             canvas.gameObject.SetActive(false);
-            board.gameObject.SetActive(true);
+            board.gameObject.transform.position = new Vector3(-3.5f, -3.5f, 0);
         }
     }
 
